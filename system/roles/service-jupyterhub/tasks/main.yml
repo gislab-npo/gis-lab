@@ -1,0 +1,43 @@
+---
+#
+### JUPYTERHUB ###
+#
+# Install and configure JupyterHub.
+#
+# Logging:
+#   production: syslog
+#   debug:      syslog
+
+
+- name: Install JupyterHub
+  apt:
+    name:
+      - jupyterhub
+    force: yes
+    install_recommends: no
+    state: latest
+
+- name: Install LDAP Authenticator Plugin for JupyterHub
+  pip:
+    name:
+      - jupyterhub-ldapauthenticator==1.0
+
+- name: Configure JupyterHub service
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+  with_items:
+    - {
+        src: jupyterhub/gislab.py.j2,
+        dest: /etc/jupyterhub/config/jupyterhub_config.d/gislab.py
+      }
+    - {
+        src: systemd/jupyterhub.service.j2,
+        dest: /etc/systemd/system/jupyterhub.service
+      }
+  notify:
+    - service jupyterhub restart
+
+- meta: flush_handlers
+
+# vim: set ts=8 sts=2 sw=2 et:
