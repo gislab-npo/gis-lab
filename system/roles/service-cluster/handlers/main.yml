@@ -1,8 +1,8 @@
 ---
 
-- name: service serf-agent restart
+- name: service serf restart
   service:
-    name: serf-agent
+    name: serf
     state: restarted
     enabled: yes
 
