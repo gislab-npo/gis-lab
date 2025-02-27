@@ -281,16 +281,6 @@
       }
   when: GISLAB_SUITE in ('office', 'lab')
 
-- name: Add Graphics Drivers PPA repository
-  shell: >
-    export DEBIAN_FRONTEND=noninteractive
-    &&
-    chroot {{ root_dir }}/root
-    add-apt-repository -y ppa:graphics-drivers/ppa
-  args:
-    executable: /bin/bash
-  when: GISLAB_CLIENT_NVIDIA_GRAPHICS_DRIVER
-
 - name: Install NVIDIA proprietary graphics driver
   shell: >
     export DEBIAN_FRONTEND=noninteractive
