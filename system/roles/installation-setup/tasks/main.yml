@@ -10,7 +10,7 @@
   assert:
     that:
       - ansible_version.major == 2
-      - ansible_version.minor >= 8
+      - ansible_version.minor >= 17
 
 - name: Check if server is running supported operating system
   assert:
