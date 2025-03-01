@@ -6,11 +6,11 @@
 
 
 ### SANITY CHECKS
-- name: Check Ansible version (>= 2.8)
+- name: Check Ansible version
   assert:
     that:
       - ansible_version.major == 2
-      - ansible_version.minor >= 8
+      - ansible_version.minor >= 17
 
 - name: Check if server is running supported operating system
   assert:

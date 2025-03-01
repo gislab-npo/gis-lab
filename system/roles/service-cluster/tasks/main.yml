@@ -61,15 +61,15 @@
     dest: "{{ root_dir }}/handlers"
     mode: 0774
   notify:
-  - service serf-agent restart
+  - service serf restart
 
 
 - name: Install Serf agent systemd unit file
   template:
-    src: systemd/serf-agent.service.j2
-    dest: /etc/systemd/system/serf-agent.service
+    src: systemd/serf.service.j2
+    dest: /etc/systemd/system/serf.service
   notify:
-  - service serf-agent restart
+  - service serf restart
 
 
 - meta: flush_handlers
